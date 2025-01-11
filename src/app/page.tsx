@@ -17,7 +17,7 @@ export default function GlobeDemo() {
     emissive: "#062056",
     emissiveIntensity: 0.1,
     shininess: 0.9,
-    polygonColor: "rgba(255,255,255,0.7)",
+    polygonColor: "rgba(255,255,255,0.9)",
     ambientLight: "#38bdf8",
     directionalLeftLight: "#ffffff",
     directionalTopLight: "#ffffff",
@@ -395,10 +395,36 @@ export default function GlobeDemo() {
   ];
 
 return (
-  <div className="flex items-center justify-center h-screen bg-white dark:bg-black relative">
-    <div className="w-full h-full">
-      <World data={sampleArcs} globeConfig={globeConfig} />
+  <div 
+    className="flex flex-row items-center justify-center py-20 h-[100vh] dark:bg-black bg-white relative w-full overflow-hidden"
+    style={{ height: "100vh" }} // Ensure full viewport height without overflow
+  >
+    <div 
+      className="max-w-7xl mx-auto w-full relative h-full md:h-[calc(100vh-40px)] px-4"
+      style={{ maxHeight: "100vh", paddingBottom: "40px" }}
+    >
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
+        className="div"
+      >
+        {/* Add meaningful content here if needed */}
+      </motion.div>
+      
+      {/* Gradient Background */}
+      <div 
+        className="absolute w-full bottom-0 inset-x-0 h-40 bg-gradient-to-b pointer-events-none select-none from-transparent dark:to-black to-white z-40" 
+      />
+      
+      {/* World Component */}
+      <div 
+        className="absolute w-full -bottom-20 h-72 md:h-full z-10 overflow-hidden"
+        style={{ maxHeight: "calc(100vh - 20px)" }}
+      >
+        <World data={sampleArcs} globeConfig={globeConfig} />
+      </div>
     </div>
   </div>
 );
-
+}
