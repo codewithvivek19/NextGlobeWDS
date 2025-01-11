@@ -400,6 +400,5 @@ export default function GlobeDemo() {
           <World data={sampleArcs} globeConfig={globeConfig} />
         </div>
       </div>
-    </div>
   );
 }
